@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.wrapper {
+    width: 80%;
+}
+
+i,
+svg {
+    pointer-events: none;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.pad {
+    width: 3rem;
+    height: 3rem;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.kick-pad {
+    background: rgb(165, 92, 92);
+}
+
+.kick-pad.active {
+    background: rgb(243, 135, 135);
+
+}
+
+.snare-pad {
+    background: rgb(81, 192, 177);
+}
+
+.snare-pad.active {
+    background: rgb(106, 248, 229);
+}
+
+.hihat-pad {
+    background: rgb(139, 139, 60);
+}
+
+.hihat-pad.active {
+    background: rgb(224, 224, 98);
+}
+
+.pads {
+    display: flex;
+}
+
+.track {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+h1 {
+    width: 30%;
+}
+
+button,
+select {
+    padding: 10px;
+    border: none;
+    width: 3rem;
+    background: #ddd;
+    transition: .5s;
+}
+
+select {
+    width: 30%;
+}
+
+button:hover {
+    background: #aaa;
+}
+
+
+select:hover {
+    background: #aaa;
+}
+
+
+
+@keyframes playTrack {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
