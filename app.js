@@ -7,6 +7,8 @@ class DrumKit {
     this.curentHihat = "./sounds/hihat-acoustic01.wav";
 
     this.selects = document.querySelectorAll("select");
+    this.muteBtns = document.querySelectorAll(".mute");
+    this.tempoSlider = document.querySelector(".tempo-slider");
 
     this.kickAudio = document.querySelector(".kick-sound");
     this.snareAudio = document.querySelector(".snare-sound");
@@ -46,6 +48,47 @@ class DrumKit {
     });
 
     this.index++;
+  }
+
+  changeTempo(e) {
+    const tempoText = document.querySelector(".tempo-nr");
+    this.bpm = e.target.value;
+    tempoText.innerText = e.target.value;
+  }
+
+  updateTempo(e) {
+    clearInterval(this.isPlaying);
+    this.isPlaying = null;
+    this.bpm = e.target.value;
+
+    const playBtn = document.querySelector(".play");
+    if (playBtn.classList.contains("active")) {
+      this.start();
+    }
+  }
+
+  muteSound(e) {
+    if (e.target.getAttribute("data-track") === "kick-track") {
+      if (e.target.classList.contains("active")) {
+        this.kickAudio.volume = 0;
+      } else {
+        this.kickAudio.volume = 1;
+      }
+    }
+    if (e.target.getAttribute("data-track") === "snare-track") {
+      if (e.target.classList.contains("active")) {
+        this.snareAudio.volume = 0;
+      } else {
+        this.snareAudio.volume = 1;
+      }
+    }
+    if (e.target.getAttribute("data-track") === "hihat-track") {
+      if (e.target.classList.contains("active")) {
+        this.hihatAudio.volume = 0;
+      } else {
+        this.hihatAudio.volume = 1;
+      }
+    }
   }
 
   changeSound(e) {
@@ -103,4 +146,19 @@ drumKit.selects.forEach((select) => {
   select.addEventListener("change", function (e) {
     drumKit.changeSound(e);
   });
+});
+
+drumKit.muteBtns.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    btn.classList.toggle("active");
+    drumKit.muteSound(e);
+  });
+});
+
+drumKit.tempoSlider.addEventListener("input", function (e) {
+  drumKit.changeTempo(e);
+});
+
+drumKit.tempoSlider.addEventListener("change", function (e) {
+  drumKit.updateTempo(e);
 });
